@@ -1,0 +1,11 @@
+CRITICAL - 2025-04-10 22:40:52 --> TypeError: CodeIgniter\Router\RouteCollection::get(): Argument #3 ($options) must be of type ?array, string given, called in C:\Users\Admin\OneDrive\Proyectos\proyecto-taller\app\Config\Routes.php on line 8
+[Method: GET, Route: dashboard]
+in SYSTEMPATH\Router\RouteCollection.php on line 1050.
+ 1 APPPATH\Config\Routes.php(8): CodeIgniter\Router\RouteCollection->get('dashboard', 'Dashboard::index', '/', 'Home::index')
+ 2 SYSTEMPATH\Router\RouteCollection.php(339): require('C:\\Users\\Admin\\OneDrive\\Proyectos\\proyecto-taller\\app\\Config\\Routes.php')
+ 3 SYSTEMPATH\CodeIgniter.php(821): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 4 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt(null)
+ 5 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
