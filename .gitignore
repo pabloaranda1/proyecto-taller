@@ -1,0 +1,35 @@
+# Configuración del entorno local (NO subir a GitHub)
+.env
+
+# Archivos de logs
+*.log
+
+# Archivos temporales y de caché
+writable/cache/*
+writable/debugbar/*
+writable/logs/*
+writable/session/*
+writable/tmp/*
+
+# Bases de datos SQLite (si usás)
+*.sqlite
+*.db
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de editor (VSCode, PHPStorm, etc.)
+.vscode/
+.idea/
+
+# Dependencias externas (si usás Composer)
+vendor/
+
+# Node (por si tenés frontend con npm/webpack)
+node_modules/
+
+# Archivos de Git conflictivos
+*.orig
+*.swp
