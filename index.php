@@ -48,6 +48,8 @@ if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
 require FCPATH . './app/Config/Paths.php';
 // ^^^ Change this line if you move your application folder
 
+/*require realpath($pathsConfig) ?: $pathsConfig;*/
+
 $paths = new Config\Paths();
 
 // LOAD THE FRAMEWORK BOOTSTRAP FILE

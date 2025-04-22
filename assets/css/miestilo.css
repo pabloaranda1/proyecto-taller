@@ -1,4 +1,4 @@
-.d{
+/*.d{
     background: linear-gradient(135deg, #fdfbfb, #ebedee);
     padding: 2rem;
     margin: 1.5rem auto;
@@ -8,3 +8,71 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+    */
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .titulo {
+        background-color: #92a8d1;
+        margin: 20px;
+    }
+    
+    .parrafo {
+        background-color: green;
+        padding-top: 50px;
+        padding-left: 10px;
+        padding-bottom: 60px;
+        padding-right: 300px;
+    }
+    
+    footer {
+        background-color: GoldenRod;
+        padding: 10px 20px 30px 40px;
+        margin: 10px 200px;
+    }
+    
+
+    .menu {
+        background-color: #465564; /* Azul oscuro */
+        width: 100%;              /* Ancho del menú */
+        padding: 10px;             /* Espaciado interno reducido */
+        font-family: Arial, sans-serif;
+    }
+
+    .menu .contenedor {
+        max-width: 130px;        /* Ancho del bloque de links */
+        margin-left: 0 auto;          /* Centrado horizontal */
+    }
+    
+    .menu ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .menu li {
+        margin-bottom: 10px;       /* Espaciado entre links */
+    }
+    
+    .menu a {
+        display: inline-block;            /* Ocupa toda la línea */
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 10px;           /* Tamaño de fuente más chico */
+        padding: 6px 10px;
+        border-radius: 4px;
+        transition: opacity 0.3s;
+        opacity: 0.5;
+    }
+    
+    .menu a:hover {
+        opacity: 1;
+    }
+    
+    .menu .logo {
+        height: 30px; /* Ajusta la altura del logo */
+        margin-right: auto; /* Espacio entre el logo y el texto */
+    }
