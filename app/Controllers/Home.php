@@ -28,4 +28,14 @@ class Home extends BaseController
     {
         return view('pages/terminos', ['title' => 'Términos y Usos']);
     }
+
+    public function invierno()
+    {
+        return view('pages/catalogo-invierno');
+    }
+
+    public function verano()
+    {
+        return view('pages/catalogo-verano');
+    }
 }

@@ -1,3 +1,4 @@
+/* Estilo para la barra de navegacion */
 
 .navbar {
     padding-top: 1rem;
@@ -40,7 +41,55 @@
   .btn-custom:hover {
     background-color: #2f3b49;
   }
+
+  .carrito-tooltip {
+    position: absolute;
+    top: 40px; /* ahora aparece debajo del ícono */
+    right: 0;
+    background-color: #868583;
+    color: #212529;
+    padding: 6px 12px;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateY(-10px); /* animación inicial: desde arriba hacia abajo */
+    pointer-events: none;
+    z-index: 10;
+  }
+  .carrito-tooltip.show {
+    opacity: 1;
+    transform: translateY(0); /* movimiento hacia abajo */
+  }
   
+  .dropdown-menu-responsive {
+    min-width: 200px;
+    max-width: 280px;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+  }
+  
+  @media (max-width: 991.98px) {
+    .dropdown-menu-responsive {
+      position: absolute !important;
+      left: auto !important;
+      right: 0 !important;
+      top: 100% !important;
+      transform: none !important;
+      min-width: 10rem;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 0.25rem;
+      box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+  }
+  
+  
+  
+/* Footer */
 
   .footer {
     background-color: #f8f9fa;
@@ -57,4 +106,398 @@
     text-decoration: underline;
     color: #343a40;
   }
+
+  /* Boton de busqueda */
   
+  .btn-search {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .btn-search img {
+    margin-top: -4px;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  /* Barra de busqueda */
+
+  .custom-input {
+    padding: 8px 12px 6px 12px;
+    font-size: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+    width: 200px;
+    outline: none;
+    line-height: 1.5;
+  }
+  
+  .custom-input:focus {
+    border-color: #999;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Links secundarios */
+
+  .navbar-link-secondary {
+    padding-top: -6px;
+    font-size: 0.75rem;
+    opacity: 0.8;  
+    transition: color 0.3s ease, opacity 0.3s ease;
+    margin-top: 4px;
+  }
+  
+  .navbar-link-secondary:hover {
+    color: #222;  
+    opacity: 1; 
+  }
+  
+ /* Cuando la pantalla sea pequeña */
+/* Para pantallas grandes (más anchas) */
+@media (min-width: 992px) {
+
+  /* Barra de búsqueda se mantendrá separada de los links */
+  .navbar-nav {
+    display: flex;
+    justify-content: flex-start;
+    flex-grow: 1;
+  }
+
+  .navbar-nav .nav-item:last-child {
+    margin-left: auto; /* Empuja la barra de búsqueda hacia la derecha */
+  }
+
+  .custom-input {
+    width: 150px; /* Ajustamos el tamaño de la barra de búsqueda */
+  }
+}
+
+/* Para pantallas pequeñas (cuando se despliega el menú hamburguesa) */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    text-align: right; /* Alineamos todo el menú a la derecha cuando se despliega el menú hamburguesa */
+  }
+
+  .navbar-nav {
+    justify-content: flex-end; /* Alineamos los items del menú a la derecha */
+  }
+
+  .navbar-nav .nav-item {
+    width: auto; /* Los items no ocupan todo el ancho */
+  }
+
+  .navbar-nav .nav-item form {
+    width: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .custom-input {
+    width: 150px; /* Ajustamos el tamaño de la barra de búsqueda */
+  }
+}
+
+.product-img {
+  max-height: 450px; /* Limita la altura de la imagen */
+  width: auto; /* Mantiene la proporción de la imagen */
+  object-fit: contain; /* Ajusta la imagen sin recortarla */
+}
+
+
+
+
+/* Estilos para la pagina de contacto */
+
+/* Fondo general */
+.contacto-page {
+  background-color: #fefefe;
+}
+
+/* Animaciones suaves */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards;
+}
+
+.fade-in.delay-1 { animation-delay: 0.2s; }
+.fade-in.delay-2 { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bordes menos redondeados */
+.contacto-page .border {
+  border-radius: 6px;
+}
+
+/* Inputs y selects */
+.contacto-page input,
+.contacto-page textarea,
+.contacto-page select {
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.contacto-page input:focus,
+.contacto-page textarea:focus,
+.contacto-page select:focus {
+  border-color: #999;
+  box-shadow: 0 0 0 0.2rem rgba(180, 180, 180, 0.25);
+}
+
+/* Botón */
+.contacto-page button {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contacto-page button:hover {
+  background-color: #f1f1f1;
+  color: #000;
+}
+
+/* Textos */
+.contacto-page h4, .contacto-page p, .contacto-page label {
+  color: #555;
+}
+
+
+/* Estilo para la pagina de contacto */
+
+.quienes-somos-page {
+  background-color: #fefefe;
+}
+
+/* Animaciones */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s forwards;
+}
+
+.fade-in.delay-1 { animation-delay: 0.2s; }
+.fade-in.delay-2 { animation-delay: 0.4s; }
+.fade-in.delay-3 { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Textos */
+.quienes-somos-page h4, .quienes-somos-page p, .quienes-somos-page ul {
+  color: #555;
+}
+
+.quienes-somos-page ul {
+  padding-left: 1.5rem;
+}
+
+/* Imagen redonda fundadora */
+.quienes-somos-page .rounded-circle {
+  border: 4px solid #fff;
+}
+
+
+/* Estilo para la pagina de comercializacion */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInMove 1s ease forwards;
+}
+
+.fade-in.delay-1 { animation-delay: 0.2s; }
+.fade-in.delay-2 { animation-delay: 0.4s; }
+.fade-in.delay-3 { animation-delay: 0.6s; }
+
+@keyframes fadeInMove {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+h2 {
+  font-weight: bold;
+  color: #333;
+}
+
+.comercializacion-page a {
+    color: #333; /* gris oscuro */
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+  }
+
+  .comercializacion-page a:hover {
+    color: #666; /* gris más claro */
+    text-decoration: underline;
+  }
+
+
+/* Estilo para pagina de terminos y uso */
+
+.terminos-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: 0;
+  padding: 60px 40px;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: left;
+}
+
+.terminos-title {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #333;
+}
+
+.terminos-section {
+  margin-bottom: 2.5rem;
+}
+
+.terminos-section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.terminos-section h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.terminos-section p, 
+.terminos-section ul {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.terminos-section ul {
+  padding-left: 1.5rem;
+}
+
+.terminos-section ul li {
+  margin-bottom: 0.7rem;
+  list-style: disc;
+}
+
+/* Estilo para las paginas del catalogo */
+
+.product-card {
+  perspective: 1000px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.product-card .card-front,
+.product-card .card-back {
+  transition: transform 0.8s;
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 8px;
+}
+
+.product-card .card-front {
+  z-index: 2;
+}
+
+.product-card .card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-card .card-back {
+  background: rgba(245, 245, 245, 0.95);
+  transform: rotateY(180deg);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.product-card .background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(100%);
+  z-index: 0;
+  border-radius: 8px;
+}
+
+.product-card:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+.product-card:hover .card-back {
+  transform: rotateY(360deg);
+}
+
+.product-card .card-body {
+  z-index: 1;
+}
+
+.add-to-cart-link {
+  display: block;
+  margin-top: 20px;
+  color: #888;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.add-to-cart-link:hover {
+  text-decoration: underline;
+  color: #666;
+}
+
+.card-price {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #555;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}

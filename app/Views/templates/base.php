@@ -5,6 +5,8 @@
     <title><?= $title ?? 'Mi Tienda' ?></title>
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/inicio.css') ?>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="<?= base_url('assets/js/script.js') ?>"></script>
 </head>
 <body>
 
