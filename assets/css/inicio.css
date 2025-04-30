@@ -44,7 +44,7 @@
 
   .carrito-tooltip {
     position: absolute;
-    top: 40px; /* ahora aparece debajo del ícono */
+    top: 40px; 
     right: 0;
     background-color: #868583;
     color: #212529;
@@ -54,13 +54,13 @@
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateY(-10px); /* animación inicial: desde arriba hacia abajo */
+    transform: translateY(-10px); 
     pointer-events: none;
     z-index: 10;
   }
   .carrito-tooltip.show {
     opacity: 1;
-    transform: translateY(0); /* movimiento hacia abajo */
+    transform: translateY(0); 
   }
   
   .dropdown-menu-responsive {
@@ -86,9 +86,8 @@
       z-index: 1000;
     }
   }
-  
-  
-  
+
+
 /* Footer */
 
   .footer {
@@ -107,41 +106,6 @@
     color: #343a40;
   }
 
-  /* Boton de busqueda */
-  
-  .btn-search {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .btn-search img {
-    margin-top: -4px;
-    vertical-align: middle;
-    cursor: pointer;
-  }
-
-  /* Barra de busqueda */
-
-  .custom-input {
-    padding: 8px 12px 6px 12px;
-    font-size: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #ffffff;
-    transition: all 0.3s ease-in-out;
-    width: 200px;
-    outline: none;
-    line-height: 1.5;
-  }
-  
-  .custom-input:focus {
-    border-color: #999;
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-
   /* Links secundarios */
 
   .navbar-link-secondary {
@@ -157,11 +121,8 @@
     opacity: 1; 
   }
   
- /* Cuando la pantalla sea pequeña */
-/* Para pantallas grandes (más anchas) */
 @media (min-width: 992px) {
 
-  /* Barra de búsqueda se mantendrá separada de los links */
   .navbar-nav {
     display: flex;
     justify-content: flex-start;
@@ -169,26 +130,20 @@
   }
 
   .navbar-nav .nav-item:last-child {
-    margin-left: auto; /* Empuja la barra de búsqueda hacia la derecha */
+    margin-left: auto; 
   }
 
-  .custom-input {
-    width: 150px; /* Ajustamos el tamaño de la barra de búsqueda */
-  }
-}
-
-/* Para pantallas pequeñas (cuando se despliega el menú hamburguesa) */
 @media (max-width: 991.98px) {
   .navbar-collapse {
-    text-align: right; /* Alineamos todo el menú a la derecha cuando se despliega el menú hamburguesa */
+    text-align: right; 
   }
 
   .navbar-nav {
-    justify-content: flex-end; /* Alineamos los items del menú a la derecha */
+    justify-content: flex-end; 
   }
 
   .navbar-nav .nav-item {
-    width: auto; /* Los items no ocupan todo el ancho */
+    width: auto;
   }
 
   .navbar-nav .nav-item form {
@@ -199,27 +154,22 @@
   }
   
   .custom-input {
-    width: 150px; /* Ajustamos el tamaño de la barra de búsqueda */
+    width: 150px;
   }
 }
 
 .product-img {
-  max-height: 450px; /* Limita la altura de la imagen */
-  width: auto; /* Mantiene la proporción de la imagen */
-  object-fit: contain; /* Ajusta la imagen sin recortarla */
+  max-height: 450px;
+  width: auto; 
+  object-fit: contain;
 }
-
-
-
 
 /* Estilos para la pagina de contacto */
 
-/* Fondo general */
 .contacto-page {
   background-color: #fefefe;
 }
 
-/* Animaciones suaves */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -236,12 +186,10 @@
   }
 }
 
-/* Bordes menos redondeados */
 .contacto-page .border {
   border-radius: 6px;
 }
 
-/* Inputs y selects */
 .contacto-page input,
 .contacto-page textarea,
 .contacto-page select {
@@ -259,7 +207,6 @@
   box-shadow: 0 0 0 0.2rem rgba(180, 180, 180, 0.25);
 }
 
-/* Botón */
 .contacto-page button {
   padding: 0.75rem 1.5rem;
   font-weight: 500;
@@ -271,19 +218,14 @@
   color: #000;
 }
 
-/* Textos */
 .contacto-page h4, .contacto-page p, .contacto-page label {
   color: #555;
 }
-
-
-/* Estilo para la pagina de contacto */
 
 .quienes-somos-page {
   background-color: #fefefe;
 }
 
-/* Animaciones */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -301,7 +243,6 @@
   }
 }
 
-/* Textos */
 .quienes-somos-page h4, .quienes-somos-page p, .quienes-somos-page ul {
   color: #555;
 }
@@ -310,7 +251,6 @@
   padding-left: 1.5rem;
 }
 
-/* Imagen redonda fundadora */
 .quienes-somos-page .rounded-circle {
   border: 4px solid #fff;
 }
@@ -350,13 +290,13 @@ h2 {
 }
 
 .comercializacion-page a {
-    color: #333; /* gris oscuro */
+    color: #333; 
     text-decoration: none;
     transition: color 0.3s ease, text-decoration 0.3s ease;
   }
 
   .comercializacion-page a:hover {
-    color: #666; /* gris más claro */
+    color: #666; 
     text-decoration: underline;
   }
 
