@@ -6,7 +6,6 @@
 
   <div class="row g-5 fade-in delay-1">
 
-    <!-- Info de Contacto -->
     <div class="col-md-6">
       <div class="p-4 border bg-white shadow-sm h-100">
         <h4 class="mb-4 text-secondary">Datos de Contacto</h4>
@@ -19,7 +18,6 @@
       </div>
     </div>
 
-    <!-- Mapa al lado -->
     <div class="col-md-6">
       <div class="ratio ratio-4x3 border shadow-sm bg-white">
         <iframe 
@@ -30,7 +28,6 @@
     </div>
   </div>
 
-  <!-- Formulario abajo -->
   <div class="row mt-5 fade-in delay-2">
     <div class="col-12">
       <div class="p-4 border bg-white shadow-sm">

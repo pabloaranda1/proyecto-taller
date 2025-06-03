@@ -6,10 +6,20 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('home', 'Home::index');
+$routes->get('/home', 'Home::index');
 $routes->get('/contacto', 'Home::contacto');
 $routes->get('/quienes-somos', 'Home::quienesSomos');
 $routes->get('/comercio', 'Home::comercio');
 $routes->get('/terminos', 'Home::terminos');
-$routes->get('catalogo-invierno', 'Home::invierno');
-$routes->get('catalogo-verano', 'Home::verano');
+$routes->get('/catalogo-invierno', 'Home::invierno');
+$routes->get('/catalogo-verano', 'Home::verano');
+$routes->get('/registro', 'UsuarioController::registrar');
+$routes->post('/registro', 'UsuarioController::guardarRegistro');
+$routes->get('/login', 'UsuarioController::login');
+$routes->post('/login', 'UsuarioController::autenticarLogin');
+$routes->get('/logout', 'UsuarioController::logout');
+
+/*admin*/
+
+$routes->get('/admin', 'AdminController::panel');
+$routes->get('/admin/usuarios', 'AdminController::usuarios');

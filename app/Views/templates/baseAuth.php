@@ -10,11 +10,6 @@
 </head>
 <body>
 
-    <?php if (session()->get('es_admin')): ?>
-        <?= view('components/navbar_admin') ?>
-    <?php else: ?>
-        <?= view('components/navbar') ?>
-    <?php endif; ?>
 
     <main class="container my-5">
         <?= $this->renderSection('content') ?>

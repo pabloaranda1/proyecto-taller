@@ -1,21 +1,3 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const botones = document.querySelectorAll('.add-to-cart-link');
-  
-    botones.forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-  
-        btn.classList.add('added');
-        btn.textContent = '✔ Añadido';
-  
-        setTimeout(() => {
-          btn.classList.remove('added');
-          btn.textContent = 'Añadir al carrito';
-        }, 2000);
-      });
-    });
-  });
-  
 
   function mostrarTooltip() {
     const tooltip = document.getElementById('tooltipCarrito');
@@ -52,8 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.querySelector("form");
     const mensajeExito = document.getElementById("mensaje-exito");
 
-    formulario.addEventListener("submit", function (e) {
-      e.preventDefault(); // Evita el envío real del formulario
 
       // Validación simple (podés ajustarla si querés)
       const campos = formulario.querySelectorAll("input, textarea, select");
@@ -79,4 +59,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 3000);
       }
     });
-  });

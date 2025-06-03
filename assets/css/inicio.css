@@ -72,22 +72,16 @@
   }
   
   @media (max-width: 991.98px) {
-    .dropdown-menu-responsive {
-      position: absolute !important;
-      left: auto !important;
-      right: 0 !important;
-      top: 100% !important;
-      transform: none !important;
-      min-width: 10rem;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 0.25rem;
-      box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-    }
+  .navbar-collapse-right {
+    justify-content: flex-end !important;
+    text-align: right;
   }
+  .navbar-collapse-right .navbar-nav {
+    align-items: flex-end;
+  }
+}
   
-  
+  */
   
 /* Footer */
 
@@ -107,41 +101,6 @@
     color: #343a40;
   }
 
-  /* Boton de busqueda */
-  
-  .btn-search {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .btn-search img {
-    margin-top: -4px;
-    vertical-align: middle;
-    cursor: pointer;
-  }
-
-  /* Barra de busqueda */
-
-  .custom-input {
-    padding: 8px 12px 6px 12px;
-    font-size: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #ffffff;
-    transition: all 0.3s ease-in-out;
-    width: 200px;
-    outline: none;
-    line-height: 1.5;
-  }
-  
-  .custom-input:focus {
-    border-color: #999;
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-
   /* Links secundarios */
 
   .navbar-link-secondary {
@@ -159,50 +118,8 @@
   
  /* Cuando la pantalla sea pequeña */
 /* Para pantallas grandes (más anchas) */
-@media (min-width: 992px) {
 
-  /* Barra de búsqueda se mantendrá separada de los links */
-  .navbar-nav {
-    display: flex;
-    justify-content: flex-start;
-    flex-grow: 1;
-  }
-
-  .navbar-nav .nav-item:last-child {
-    margin-left: auto; /* Empuja la barra de búsqueda hacia la derecha */
-  }
-
-  .custom-input {
-    width: 150px; /* Ajustamos el tamaño de la barra de búsqueda */
-  }
-}
-
-/* Para pantallas pequeñas (cuando se despliega el menú hamburguesa) */
-@media (max-width: 991.98px) {
-  .navbar-collapse {
-    text-align: right; /* Alineamos todo el menú a la derecha cuando se despliega el menú hamburguesa */
-  }
-
-  .navbar-nav {
-    justify-content: flex-end; /* Alineamos los items del menú a la derecha */
-  }
-
-  .navbar-nav .nav-item {
-    width: auto; /* Los items no ocupan todo el ancho */
-  }
-
-  .navbar-nav .nav-item form {
-    width: auto;
-    margin-left: auto;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .custom-input {
-    width: 150px; /* Ajustamos el tamaño de la barra de búsqueda */
-  }
-}
-
+*/
 .product-img {
   max-height: 450px; /* Limita la altura de la imagen */
   width: auto; /* Mantiene la proporción de la imagen */
@@ -335,12 +252,12 @@
   }
 }
 
-.card {
+.comercializacion-page .card {
   border-radius: 1rem;
   transition: transform 0.3s ease;
 }
 
-.card:hover {
+.comercializacion-page .card:hover {
   transform: translateY(-5px);
 }
 
@@ -500,4 +417,98 @@ h2 {
   margin-top: 10px;
   margin-bottom: 5px;
   letter-spacing: 0.5px;
+}
+
+/* Estilo para la página de login */
+
+.login-page {
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 3rem;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e0e0e0;
+}
+
+.login-card h3 {
+  padding-bottom: 2rem;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.login-card .form-label {
+  color: #666;
+  font-weight: 300;
+}
+
+.login-card .form-control {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 0;
+  background-color: transparent;
+  transition: border-color 0.3s;
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.login-card .form-control:focus {
+  border-bottom: 2px solid #000;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.login-card button {
+  background-color: #ebe6e6be;
+  color: #726d6d;
+  border-radius: 18px;
+  font-size: 0.8rem;
+  font-weight: 300; /* Cambiado a fuente más fina */
+  border: 1px solid #000;
+  padding: 0.3rem 1.3rem;
+  transition: background-color 0.3s ease;
+}
+
+.login-card button:hover {
+  background-color: #9b8f8f;
+}
+
+.login-card .text-muted {
+  color: #999 !important;
+}
+
+.login-card a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Estilo para boton de volver */
+
+.back-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  color: #868181;
+  transition: color 0.3s ease, color 0.3s ease;
+}
+
+.back-btn:hover {
+  color: #000000;
+}
+
+.login-card button:focus {
+  box-shadow: none !important;
+  outline: none !important;
 }
