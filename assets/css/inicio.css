@@ -44,7 +44,7 @@
 
   .carrito-tooltip {
     position: absolute;
-    top: 40px; /* ahora aparece debajo del ícono */
+    top: 40px; 
     right: 0;
     background-color: #868583;
     color: #212529;
@@ -54,13 +54,13 @@
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
-    transform: translateY(-10px); /* animación inicial: desde arriba hacia abajo */
+    transform: translateY(-10px); 
     pointer-events: none;
     z-index: 10;
   }
   .carrito-tooltip.show {
     opacity: 1;
-    transform: translateY(0); /* movimiento hacia abajo */
+    transform: translateY(0); 
   }
   
   .dropdown-menu-responsive {
@@ -116,27 +116,20 @@
     opacity: 1; 
   }
   
- /* Cuando la pantalla sea pequeña */
-/* Para pantallas grandes (más anchas) */
 
-*/
+
 .product-img {
-  max-height: 450px; /* Limita la altura de la imagen */
-  width: auto; /* Mantiene la proporción de la imagen */
-  object-fit: contain; /* Ajusta la imagen sin recortarla */
+  max-height: 450px;
+  width: auto; 
+  object-fit: contain;
 }
-
-
-
 
 /* Estilos para la pagina de contacto */
 
-/* Fondo general */
 .contacto-page {
   background-color: #fefefe;
 }
 
-/* Animaciones suaves */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -153,12 +146,10 @@
   }
 }
 
-/* Bordes menos redondeados */
 .contacto-page .border {
   border-radius: 6px;
 }
 
-/* Inputs y selects */
 .contacto-page input,
 .contacto-page textarea,
 .contacto-page select {
@@ -176,7 +167,6 @@
   box-shadow: 0 0 0 0.2rem rgba(180, 180, 180, 0.25);
 }
 
-/* Botón */
 .contacto-page button {
   padding: 0.75rem 1.5rem;
   font-weight: 500;
@@ -188,19 +178,14 @@
   color: #000;
 }
 
-/* Textos */
 .contacto-page h4, .contacto-page p, .contacto-page label {
   color: #555;
 }
-
-
-/* Estilo para la pagina de contacto */
 
 .quienes-somos-page {
   background-color: #fefefe;
 }
 
-/* Animaciones */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -218,7 +203,6 @@
   }
 }
 
-/* Textos */
 .quienes-somos-page h4, .quienes-somos-page p, .quienes-somos-page ul {
   color: #555;
 }
@@ -227,7 +211,6 @@
   padding-left: 1.5rem;
 }
 
-/* Imagen redonda fundadora */
 .quienes-somos-page .rounded-circle {
   border: 4px solid #fff;
 }
@@ -267,13 +250,13 @@ h2 {
 }
 
 .comercializacion-page a {
-    color: #333; /* gris oscuro */
+    color: #333; 
     text-decoration: none;
     transition: color 0.3s ease, text-decoration 0.3s ease;
   }
 
   .comercializacion-page a:hover {
-    color: #666; /* gris más claro */
+    color: #666; 
     text-decoration: underline;
   }
 
@@ -415,8 +398,10 @@ h2 {
   font-weight: 600;
   color: #555;
   margin-top: 10px;
+
   margin-bottom: 5px;
   letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
 /* Estilo para la página de login */
