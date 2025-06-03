@@ -24,6 +24,9 @@ class UsuarioController extends BaseController
                 'nombre'     => $usuario['nombre'],
                 'email'      => $usuario['email'],
                 'celular'    => $usuario['celular'],
+                'id_direccion' => $usuario['id_direccion'],
+                'es_admin'   => $usuario['es_admin'],
+                'activo'     => $usuario['activo'],
             ]);
             return redirect()->to('/');
         } else {
