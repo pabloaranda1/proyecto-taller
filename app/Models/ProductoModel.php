@@ -8,7 +8,7 @@ class ProductoModel extends Model
     protected $table      = 'producto';
     protected $primaryKey = 'id_producto';
 
-    protected $allowedFields = ['nombre', 'descripcion', 'categoria', 'precio', 'stock', 'imagen', 'activo'];
+    protected $allowedFields = ['nombre', 'categoria', 'precio', 'stock', 'imagen', 'imagen2', 'activo'];
     protected $useTimestamps = false;
 
     protected $returnType = 'array'; 

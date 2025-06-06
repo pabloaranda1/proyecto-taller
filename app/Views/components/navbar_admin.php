@@ -23,10 +23,7 @@
           <a class="nav-link navbar-link-secondary" href="<?= base_url('/admin/usuarios') ?>">Usuarios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link navbar-link-secondary" href="<?= base_url('/admin/stock') ?>">Stock</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link navbar-link-secondary" href="<?= base_url('/admin/pedidos') ?>">Pedidos</a>
+          <a class="nav-link navbar-link-secondary" href="<?= base_url('/admin/productos') ?>">Productos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link navbar-link-secondary" href="<?= base_url('/admin/consultas') ?>">Consultas</a>

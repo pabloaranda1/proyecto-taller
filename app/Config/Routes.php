@@ -23,3 +23,7 @@ $routes->get('/logout', 'UsuarioController::logout');
 
 $routes->get('/admin', 'AdminController::panel');
 $routes->get('/admin/usuarios', 'AdminController::usuarios');
+$routes->get('/admin/productos', 'AdminController::productos');
+$routes->get('admin/productos/agregar', 'AdminController::agregarProducto');
+$routes->post('admin/productos/guardar', 'AdminController::guardarProducto');
+$routes->get('admin/productos/eliminar/(:num)', 'AdminController::eliminarProducto/$1');

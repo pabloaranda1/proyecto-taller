@@ -497,3 +497,27 @@ h2 {
   box-shadow: none !important;
   outline: none !important;
 }
+
+/* Estilo para paginas de administrador */
+
+/* Estilo para formularios de administrador */
+
+.admin-form {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form h2 {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1.5rem;
+  padding: 15px 0px 5px 0px;
+}
+
+.admin-form .btn-primary{
+  background-color: #465564;
+  color: white;
+  padding: 0.2rem 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
