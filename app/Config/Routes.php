@@ -27,3 +27,8 @@ $routes->get('/admin/productos', 'AdminController::productos');
 $routes->get('admin/productos/agregar', 'AdminController::agregarProducto');
 $routes->post('admin/productos/guardar', 'AdminController::guardarProducto');
 $routes->get('admin/productos/eliminar/(:num)', 'AdminController::eliminarProducto/$1');
+$routes->get('admin/productos/desactivados', 'AdminController::productosDesactivados');
+$routes->get('admin/productos/reactivar/(:num)', 'AdminController::reactivarProducto/$1');
+$routes->get('admin/productos/editar/(:num)', 'AdminController::editarProducto/$1');
+$routes->post('admin/productos/actualizar/(:num)', 'AdminController::actualizarProducto/$1');
+

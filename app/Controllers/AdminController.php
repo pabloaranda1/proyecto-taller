@@ -110,6 +110,17 @@ $productosPorCategoria = $this->db->query("
         return view('pages/admin/productos', ['productos' => $productos]);
     }
 
+    public function productosDesactivados()
+    {
+        $productos = $this->db->table('producto')
+        ->where('activo', 0)
+        ->get()
+        ->getResult();
+
+        return view('pages/admin/productos_desactivados', ['productos' => $productos]);
+    }
+
+
     public function agregarProducto()
     {
         return view('pages/admin/agregar_producto');
@@ -132,7 +143,47 @@ $productosPorCategoria = $this->db->query("
 
     public function eliminarProducto($id)
     {
-        $this->db->table('producto')->delete(['id_producto' => $id]);
+        $this->db->table('producto')->where('id_producto', $id)->update(['activo' => 0, 'stock' => 0]);
         return redirect()->to('/admin/productos');
     }
+
+    public function reactivarProducto($id)
+    {
+    $this->db->table('producto')->where('id_producto', $id)->update(['activo' => 1]);
+    return redirect()->to('/admin/productos/desactivados');
+    }
+
+    /* editar producto */
+
+    public function editarProducto($id)
+{
+    $producto = $this->db->table('producto')
+        ->where('id_producto', $id)
+        ->get()
+        ->getRow();
+
+    if (!$producto) {
+        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Producto no encontrado");
+    }
+
+    return view('pages/admin/editar_producto', ['producto' => $producto]);
+}
+
+public function actualizarProducto($id)
+{
+    $data = [
+        'nombre'    => $this->request->getPost('nombre'),
+        'categoria' => $this->request->getPost('categoria'),
+        'precio'    => $this->request->getPost('precio'),
+        'stock'     => $this->request->getPost('stock')
+    ];
+
+    $this->db->table('producto')
+        ->where('id_producto', $id)
+        ->update($data);
+
+    return redirect()->to('/admin/productos')->with('mensaje', 'Producto actualizado correctamente');
+}
+
+
 }

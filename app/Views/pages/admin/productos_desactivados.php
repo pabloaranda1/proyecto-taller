@@ -3,11 +3,9 @@
 <?= $this->section('content') ?>
 
 <div class="container mt-4">
-    <h1 class="mb-4">Gestión de Productos</h1>
-    
-    <a href="<?= site_url('admin/productos/agregar') ?>" class="btn btn-success mb-3">Agregar producto</a>
+    <h1 class="mb-4">Productos Desactivados</h1>
 
-    <a href="<?= site_url('admin/productos/desactivados') ?>" class="btn btn-secondary mb-3">Ver desactivados</a>
+    <a href="<?= site_url('admin/productos') ?>" class="btn btn-primary mb-3">Volver a productos activos</a>
 
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
@@ -31,7 +29,7 @@
                         <td><?= esc($p->stock) ?></td>
                         <td>
                             <a href="<?= site_url('admin/productos/editar/' . $p->id_producto) ?>" class="btn btn-sm btn-primary">Editar</a>
-                            <a href="<?= site_url('admin/productos/eliminar/' . $p->id_producto) ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">Eliminar</a>
+                            <a href="<?= site_url('admin/productos/reactivar/' . $p->id_producto) ?>" class="btn btn-sm btn-primary" onclick="return confirm('¿Seguro que deseas reactivar este producto?')">Reactivar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -42,7 +40,6 @@
             </tr>
         <?php endif; ?>
             </table>
-    </table>
 </div>
 
 <?= $this->endSection() ?>
