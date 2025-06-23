@@ -54,3 +54,14 @@
         }, 3000);
       }
     });
+
+
+    document.querySelectorAll('.editar-campo').forEach(boton => {
+      boton.addEventListener('click', () => {
+          const campo = boton.getAttribute('data-campo');
+          const input = document.querySelector(`input[name="${campo}"]`);
+          input.removeAttribute('readonly');
+          document.getElementById('btn-guardar').disabled = false;
+          input.focus();
+      });
+  });

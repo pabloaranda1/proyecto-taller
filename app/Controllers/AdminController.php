@@ -84,10 +84,19 @@ $productosPorCategoria = $this->db->query("
     public function usuarios()
     {
         $usuarioModel = new UsuarioModel();
-        $usuarios = $usuarioModel->findAll();
+        $usuarios = $usuarioModel->where('activo', 1)->findAll();
 
-        return view('admin/usuarios', ['usuarios' => $usuarios]);
+        return view('pages/admin/usuarios', ['usuarios' => $usuarios]);
     }
+
+    public function usuariosDesactivados()
+    {
+        $usuarioModel = new UsuarioModel();
+        $usuarios = $usuarioModel->where('activo', 0)->findAll();
+
+        return view('pages/admin/usuarios_desactivados', ['usuarios' => $usuarios]);
+    }
+
 
     // Ver un usuario específico
     public function verUsuario($id)
@@ -100,6 +109,35 @@ $productosPorCategoria = $this->db->query("
         }
 
         return view('pages/admin/ver_usuario', ['usuario' => $usuario]);
+    }
+
+    public function desactivarUsuario($id){
+        $usuarioModel = new UsuarioModel();
+
+        // Verificar si el usuario existe
+        if (!$usuarioModel->find($id)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Usuario no encontrado");
+        }
+
+        // Desactivar usuario
+        $usuarioModel->update($id, ['activo' => 0]);
+
+        return redirect()->to('/admin/usuarios')->with('mensaje', 'Usuario desactivado correctamente');
+    }
+
+    public function reactivarUsuario($id)
+    {
+        $usuarioModel = new UsuarioModel();
+
+        // Verificar si el usuario existe
+        if (!$usuarioModel->find($id)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound("Usuario no encontrado");
+        }
+
+        // Reactivar usuario
+        $usuarioModel->update($id, ['activo' => 1]);
+
+        return redirect()->to('/admin/usuarios/desactivados')->with('mensaje', 'Usuario reactivado correctamente');
     }
     
     public function productos()
@@ -127,19 +165,33 @@ $productosPorCategoria = $this->db->query("
     }
 
     public function guardarProducto()
-    {
-        $data = [
-            'nombre' => $this->request->getPost('nombre'),
-            'categoria' => $this->request->getPost('categoria'),
-            'precio' => $this->request->getPost('precio'),
-            'stock' => $this->request->getPost('stock'),
-            'imagen' => $this->request->getFile('imagen')->getName(),
-            'imagen2' => $this->request->getFile('imagen2')->getName(),
-        ];
+{
+    $validation = \Config\Services::validation();
 
-        $this->db->table('producto')->insert($data);
-        return redirect()->to('admin/productos');
+    $reglas = [
+        'nombre'    => 'required|min_length[2]',
+        'categoria' => 'required',
+        'precio'    => 'required|numeric',
+        'stock'     => 'required|integer'
+    ];
+
+    if (!$this->validate($reglas)) {
+        return redirect()->back()->withInput()->with('errors', $validation->getErrors());
     }
+
+    $data = [
+        'nombre'    => $this->request->getPost('nombre'),
+        'categoria' => $this->request->getPost('categoria'),
+        'precio'    => $this->request->getPost('precio'),
+        'stock'     => $this->request->getPost('stock'),
+        'activo'    => 1
+    ];
+
+    $this->db->table('producto')->insert($data);
+
+    return redirect()->to('/admin/productos')->with('mensaje', 'Producto agregado correctamente');
+}
+
 
     public function eliminarProducto($id)
     {
@@ -171,6 +223,21 @@ $productosPorCategoria = $this->db->query("
 
 public function actualizarProducto($id)
 {
+    $validation = \Config\Services::validation();
+
+    $reglas = [
+        'nombre' => 'required|min_length[2]',
+        'categoria' => 'required',
+        'precio' => 'required|numeric',
+        'stock' => 'required|integer'
+    ];
+
+    if (!$this->validate($reglas)) {
+        return redirect()->back()
+        ->withInput()
+        ->with('errors', $validation->getErrors());
+    }
+
     $data = [
         'nombre'    => $this->request->getPost('nombre'),
         'categoria' => $this->request->getPost('categoria'),
@@ -184,6 +251,7 @@ public function actualizarProducto($id)
 
     return redirect()->to('/admin/productos')->with('mensaje', 'Producto actualizado correctamente');
 }
+
 
 
 }

@@ -20,15 +20,22 @@ $routes->post('/login', 'UsuarioController::autenticarLogin');
 $routes->get('/logout', 'UsuarioController::logout');
 
 /*admin*/
+$routes->group('admin', ['filter' => 'admin'], function ($routes) {
+    $routes->get('/', 'AdminController::panel'); // Esto es /admin
 
-$routes->get('/admin', 'AdminController::panel');
-$routes->get('/admin/usuarios', 'AdminController::usuarios');
-$routes->get('/admin/productos', 'AdminController::productos');
-$routes->get('admin/productos/agregar', 'AdminController::agregarProducto');
-$routes->post('admin/productos/guardar', 'AdminController::guardarProducto');
-$routes->get('admin/productos/eliminar/(:num)', 'AdminController::eliminarProducto/$1');
-$routes->get('admin/productos/desactivados', 'AdminController::productosDesactivados');
-$routes->get('admin/productos/reactivar/(:num)', 'AdminController::reactivarProducto/$1');
-$routes->get('admin/productos/editar/(:num)', 'AdminController::editarProducto/$1');
-$routes->post('admin/productos/actualizar/(:num)', 'AdminController::actualizarProducto/$1');
+    $routes->get('usuarios', 'AdminController::usuarios');
+    $routes->get('usuarios/desactivados', 'AdminController::usuariosDesactivados');
+    $routes->get('usuarios/ver_usuario/(:num)', 'AdminController::verUsuario/$1');
+    $routes->get('usuarios/desactivar/(:num)', 'AdminController::desactivarUsuario/$1');
+    $routes->get('usuarios/reactivar/(:num)', 'AdminController::reactivarUsuario/$1');
+
+    $routes->get('productos', 'AdminController::productos');
+    $routes->get('productos/agregar', 'AdminController::agregarProducto');
+    $routes->post('productos/guardar', 'AdminController::guardarProducto');
+    $routes->get('productos/eliminar/(:num)', 'AdminController::eliminarProducto/$1');
+    $routes->get('productos/desactivados', 'AdminController::productosDesactivados');
+    $routes->get('productos/reactivar/(:num)', 'AdminController::reactivarProducto/$1');
+    $routes->get('productos/editar/(:num)', 'AdminController::editarProducto/$1');
+    $routes->post('productos/actualizar/(:num)', 'AdminController::actualizarProducto/$1');
+});
 

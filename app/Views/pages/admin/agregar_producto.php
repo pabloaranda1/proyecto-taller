@@ -4,10 +4,20 @@
 
 <div class="container mt-4 admin-form" style="max-width: 500px;">
     <h2>Agregar Producto</h2>
+    <?php if (session()->has('errors')): ?>
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            <?php foreach (session('errors') as $error): ?>
+                <li><?= esc($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <?php endif; ?>
+
     <form action="<?= site_url('admin/productos/guardar') ?>" method="post" enctype="multipart/form-data">
         <div class="mb-2">
             <label class="form-label">Nombre</label>
-            <input type="text" name="nombre" class="form-control form-control-sm" required>
+            <input type="text" name="nombre" class="form-control form-control-sm" value="<?= old('nombre')?>" required>
         </div>
         <div class="mb-2">
             <label class="form-label">Categoría</label>
@@ -19,11 +29,11 @@
         </div>
         <div class="mb-2">
             <label class="form-label">Precio</label>
-            <input type="number" step="0.01" name="precio" class="form-control form-control-sm" required>
+            <input type="number" step="1000" name="precio" class="form-control form-control-sm" value="<?= old('precio')?>" required>
         </div>
         <div class="mb-2">
             <label class="form-label">Stock</label>
-            <input type="number" name="stock" class="form-control form-control-sm" required>
+            <input type="number" name="stock" class="form-control form-control-sm" value="<?= old('stock')?>" required>
         </div>
         <div class="row mb-2">
             <div class="col">
