@@ -2,6 +2,11 @@
 
 namespace App\Controllers;
 use App\Models\UsuarioModel;
+use App\Models\ConsultaModel;
+use App\Models\ConsultaSinSesionModel;
+use App\Models\FacturaModel;
+use App\Models\DetalleFacturaModel;
+use App\Controllers\BaseController;
 
 class AdminController extends BaseController
 {
@@ -139,7 +144,50 @@ $productosPorCategoria = $this->db->query("
 
         return redirect()->to('/admin/usuarios/desactivados')->with('mensaje', 'Usuario reactivado correctamente');
     }
-    
+
+    public function actualizarUsuario($id_usuario)
+    {
+        $request = service('request');
+
+        $data = [
+            'nombre' => $request->getPost('nombre'),
+            'email' => $request->getPost('email'),
+            'celular' => $request->getPost('celular'),
+        ];
+
+        $password = $request->getPost('password');
+        $password_confirm = $request->getPost('password_confirm');
+
+        if (!empty($password)) {
+            if ($password === $password_confirm) {
+                $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+            } else {
+                return redirect()->back()->with('error', 'Las contraseñas no coinciden')->withInput();
+            }
+        }
+
+        $usuarioModel = new UsuarioModel();
+        $usuarioModel->update($id_usuario, $data);
+
+        return redirect()->to('admin/usuarios/ver_usuario/' . $id_usuario)
+                         ->with('success', 'Usuario actualizado correctamente');
+    }
+
+    // Mostrar facturas de un usuario
+   public function mostrarFacturasUsuario($id_usuario)
+{
+    $facturaModel = new FacturaModel();
+    $usuarioModel = new UsuarioModel();
+
+    $facturas = $facturaModel->where('id_usuario', $id_usuario)->findAll();
+    $usuario = $usuarioModel->find($id_usuario);
+
+    return view('pages/admin/facturas_usuario', [
+        'facturas' => $facturas,
+        'usuario' => $usuario // <-- agrega esto
+    ]);
+}
+
     public function productos()
     {
         $query = $this->db->query("SELECT * FROM producto WHERE activo = 1");
@@ -172,18 +220,30 @@ $productosPorCategoria = $this->db->query("
         'nombre'    => 'required|min_length[2]',
         'categoria' => 'required',
         'precio'    => 'required|numeric',
-        'stock'     => 'required|integer'
+        'stock'     => 'required|integer',
+        'imagen'    => 'uploaded[imagen]|is_image[imagen]',
+        'imagen2'   => 'uploaded[imagen2]|is_image[imagen2]'
     ];
 
     if (!$this->validate($reglas)) {
         return redirect()->back()->withInput()->with('errors', $validation->getErrors());
     }
 
+    $imagen      = $this->request->getFile('imagen');
+    $imagen2     = $this->request->getFile('imagen2');
+    $nombreImg1  = $imagen->getRandomName();
+    $nombreImg2  = $imagen2->getRandomName();
+
+    $imagen->move(ROOTPATH . 'assets/images/productos', $nombreImg1);
+    $imagen2->move(ROOTPATH . 'assets/images/productos-background', $nombreImg2);
+
     $data = [
         'nombre'    => $this->request->getPost('nombre'),
         'categoria' => $this->request->getPost('categoria'),
         'precio'    => $this->request->getPost('precio'),
         'stock'     => $this->request->getPost('stock'),
+        'imagen'    => $nombreImg1,
+        'imagen2'   => $nombreImg2,
         'activo'    => 1
     ];
 
@@ -229,7 +289,9 @@ public function actualizarProducto($id)
         'nombre' => 'required|min_length[2]',
         'categoria' => 'required',
         'precio' => 'required|numeric',
-        'stock' => 'required|integer'
+        'stock' => 'required|integer',
+        'imagen'    => 'uploaded[imagen]|is_image[imagen]',
+        'imagen2'   => 'uploaded[imagen2]|is_image[imagen2]'
     ];
 
     if (!$this->validate($reglas)) {
@@ -238,11 +300,21 @@ public function actualizarProducto($id)
         ->with('errors', $validation->getErrors());
     }
 
+    $imagen      = $this->request->getFile('imagen');
+    $imagen2     = $this->request->getFile('imagen2');
+    $nombreImg1  = $imagen->getRandomName();
+    $nombreImg2  = $imagen2->getRandomName();
+
+    $imagen->move(ROOTPATH . 'assets/images/productos', $nombreImg1);
+    $imagen2->move(ROOTPATH . 'assets/images/productos-background', $nombreImg2);
+
     $data = [
         'nombre'    => $this->request->getPost('nombre'),
         'categoria' => $this->request->getPost('categoria'),
         'precio'    => $this->request->getPost('precio'),
-        'stock'     => $this->request->getPost('stock')
+        'stock'     => $this->request->getPost('stock'),
+        'imagen'    => $nombreImg1,
+        'imagen2'   => $nombreImg2,
     ];
 
     $this->db->table('producto')
@@ -252,6 +324,114 @@ public function actualizarProducto($id)
     return redirect()->to('/admin/productos')->with('mensaje', 'Producto actualizado correctamente');
 }
 
+/* Gestion de consultas */
 
+public function consultas()
+{
+    $consultaModel = new \App\Models\ConsultaModel();
+    $consultaSinSesionModel = new \App\Models\ConsultaSinSesionModel();
+
+    $perPage = 10;
+    $pageConSesion = (int) ($this->request->getGet('page_con_sesion') ?? 1);
+    $pageSinSesion = (int) ($this->request->getGet('page_sin_sesion') ?? 1);
+
+    // Usamos la conexión ya creada
+    $builder = $this->db->table('consulta c');
+    $builder->select('c.*, u.nombre, u.email, u.id_usuario');
+    $builder->join('usuario u', 'c.id_usuario = u.id_usuario');
+    $builder->orderBy('c.id_consulta', 'DESC');
+
+    // Para contar total sin resetear
+    $totalConSesion = $builder->countAllResults(false);
+
+    // Obtenemos resultados con limit y offset
+    $consultasConSesion = $builder->limit($perPage, ($pageConSesion - 1) * $perPage)->get()->getResultArray();
+
+    // Consultas sin sesión
+    $totalSinSesion = $consultaSinSesionModel->countAllResults(false);
+    $consultasSinSesion = $consultaSinSesionModel->orderBy('id_consulta', 'DESC')->findAll($perPage, ($pageSinSesion - 1) * $perPage);
+
+    $pager = \Config\Services::pager();
+
+    return view('pages/admin/consultas', [
+        'consultasConSesion' => $consultasConSesion,
+        'consultasSinSesion' => $consultasSinSesion,
+        'pager' => $pager,
+        'totalConSesion' => $totalConSesion,
+        'totalSinSesion' => $totalSinSesion,
+        'perPage' => $perPage,
+        'pageConSesion' => $pageConSesion,
+        'pageSinSesion' => $pageSinSesion,
+    ]);
+}
+
+public function cambiarEstado($tipo = null, $id = null)
+{
+    if ($this->request->isAJAX() && in_array($tipo, ['con_sesion', 'sin_sesion']) && is_numeric($id)) {
+        $model = $tipo === 'con_sesion'
+            ? new \App\Models\ConsultaModel()
+            : new \App\Models\ConsultaSinSesionModel();
+
+        $consulta = $model->find($id);
+        if (!$consulta) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Consulta no encontrada']);
+        }
+
+        $nuevoEstado = $consulta['leido'] ? 0 : 1;
+        $model->update($id, ['leido' => $nuevoEstado]);
+
+        return $this->response->setJSON([
+            'status' => 'ok',
+            'nuevoEstado' => $nuevoEstado,
+            'label' => $nuevoEstado ? 'Leído' : 'No leído',
+            'tooltip' => $nuevoEstado ? 'Marcar como no leído' : 'Marcar como leído'
+        ]);
+    }
+
+    return $this->response->setJSON(['status' => 'error', 'message' => 'Solicitud inválida']);
+}
+
+public function toggleLeido($id)
+{
+    $consultaModel = new \App\Models\ConsultaModel();
+    $consulta = $consultaModel->find($id);
+
+    if ($consulta) {
+        $nuevoEstado = $consulta['leido'] ? 0 : 1;
+        $consultaModel->update($id, ['leido' => $nuevoEstado]);
+    }
+
+    return redirect()->back();
+}
+
+public function toggleLeidoSinSesion($id)
+{
+    $consultaModel = new \App\Models\ConsultaSinSesionModel();
+    $consulta = $consultaModel->find($id);
+
+    if ($consulta) {
+        $nuevoEstado = $consulta['leido'] ? 0 : 1;
+        $consultaModel->update($id, ['leido' => $nuevoEstado]);
+    }
+
+    return redirect()->back();
+}
+
+public function verConsulta($id)
+{
+    $model = new \App\Models\ConsultaModel();
+    $consulta = $model->select('consulta.*, usuario.nombre, usuario.email')
+                      ->join('usuario', 'usuario.id_usuario = consulta.id_usuario')
+                      ->find($id);
+
+    if (!$consulta) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException("Consulta no encontrada");
+    }
+
+    return view('pages/admin/consulta', [
+        'consulta' => $consulta,
+        'rutaToggleLeido' => 'admin/consultas/toggleLeido'
+    ]);
+}
 
 }

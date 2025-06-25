@@ -32,29 +32,27 @@
     <div class="col-12">
       <div class="p-4 border bg-white shadow-sm">
         <h4 class="mb-4 text-secondary">Envíanos tu consulta</h4>
-        <form>
+        <?php if (session('exito')): ?>
+          <div class="alert alert-success mt-3"><?= session('exito') ?></div>
+        <?php endif; ?>
+        <?php if (session('error')): ?>
+          <div class="alert alert-danger mt-3"><?= session('error') ?></div>
+        <?php endif; ?>
+        <form action="<?= site_url('consultas/enviar') ?>" method="post" id="form-consulta">
           <div class="row g-3">
-            <div class="col-md-6">
-              <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" required>
-            </div>
-            <div class="col-md-6">
-              <label for="email" class="form-label">Correo Electrónico</label>
-              <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
-            </div>
+            <?php if (!session('id_usuario')): ?>
+              <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com" required>
+              </div>
+            <?php endif; ?>
             <div class="col-12">
               <label for="mensaje" class="form-label">Mensaje</label>
-              <textarea class="form-control" id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
-            </div>
-            <div class="col-md-6">
-              <label for="origen" class="form-label">¿Cómo nos conociste?</label>
-              <select class="form-select" id="origen">
-                <option selected>Seleccionar</option>
-                <option value="redes">Redes Sociales</option>
-                <option value="busqueda">Búsqueda en Google</option>
-                <option value="recomendacion">Recomendación</option>
-                <option value="otros">Otros</option>
-              </select>
+              <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
             </div>
             <div class="col-12 text-end">
               <button type="submit" class="btn btn-outline-dark mt-3">Enviar Mensaje</button>

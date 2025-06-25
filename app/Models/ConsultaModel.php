@@ -8,7 +8,7 @@ class ConsultaModel extends Model
     protected $table      = 'consulta';
     protected $primaryKey = 'id_consulta';
 
-    protected $allowedFields = ['nombre', 'descripcion', 'categoria', 'precio', 'stock', 'imagen', 'activo'];
+    protected $allowedFields = ['id_usuario', 'mensaje', 'leido', 'activo'];
     protected $useTimestamps = false;
 
     protected $returnType = 'array'; 

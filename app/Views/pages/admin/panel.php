@@ -89,6 +89,14 @@
                     <td><?= $venta->fecha ?></td>
                     <td>$ <?= number_format($venta->total, 2, ',', '.') ?></td>
                     <td><?= $venta->cliente ?></td>
+                    <td>
+                        <a href="<?= site_url('factura/ver/' . $venta->id_factura) ?>" class="btn btn-sm btn-outline-secondary" title="Ver factura">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

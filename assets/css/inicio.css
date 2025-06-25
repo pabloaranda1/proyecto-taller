@@ -313,95 +313,152 @@ h2 {
 /* Estilo para las paginas del catalogo */
 
 .product-card {
-  perspective: 1000px;
-  height: 400px;
-  position: relative;
-  overflow: hidden;
-  border: none;
-}
-
-.product-card .card-front,
-.product-card .card-back {
-  transition: transform 0.8s;
-  backface-visibility: hidden;
-  position: absolute;
   width: 100%;
+  max-width: 340px;   /* <-- Cambia 270px por 340px o el valor que prefieras */
+  margin: 0 auto;
+  min-height: 370px;  /* <-- Opcional: aumenta si quieres más alto */
   height: 100%;
-  top: 0;
-  left: 0;
+  background: #fafafa;
   border-radius: 8px;
-}
-
-.product-card .card-front {
-  z-index: 2;
-}
-
-.product-card .card-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.product-card .card-back {
-  background: rgba(245, 245, 245, 0.95);
-  transform: rotateY(180deg);
-  color: #333;
+  box-shadow: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  border-color: #bdbdbd;
+  box-shadow: 0 2px 12px rgba(80,80,80,0.06);
+}
+
+.product-card img {
+  width: 100%;
+  height: 230px;      /* <-- Cambia 180px por 230px o el valor que prefieras */
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+  margin: 0;
+  background: #ededed;
 }
 
 .product-card .background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.15;
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(100%);
-  z-index: 0;
-  border-radius: 8px;
-}
-
-.product-card:hover .card-front {
-  transform: rotateY(180deg);
-}
-
-.product-card:hover .card-back {
-  transform: rotateY(360deg);
+  display: none; /* O déjala si te gusta el efecto */
 }
 
 .product-card .card-body {
   z-index: 1;
+  padding: 10px 10px 8px 10px;
+  background: transparent;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  font-size: 0.97rem;
 }
 
-.add-to-cart-link {
-  display: block;
-  margin-top: 20px;
+.card-title {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.15rem;
+  margin-top: 0.15rem;
+  letter-spacing: 0.01em;
+}
+
+.card-label {
+  font-size: 0.89rem;
   color: #888;
-  font-size: 0.85rem;
-  text-decoration: none;
-}
-
-.add-to-cart-link:hover {
-  text-decoration: underline;
-  color: #666;
+  margin-bottom: 0.15rem;
 }
 
 .card-price {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #555;
-  margin-top: 10px;
+  font-size: 1.08rem;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.3rem;
+  margin-top: 0.15rem;
+  letter-spacing: 0.01em;
+}
 
-  margin-bottom: 5px;
-  letter-spacing: 0.5px;
-  transition: color 0.3s ease;
+.add-to-cart-link {
+  display: inline-block;
+  font-size: 0.91rem;
+  padding: 3px 12px;
+  border-radius: 6px;
+  background: #ededed;
+  color: #222;
+  border: none;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  margin-bottom: 0.15rem;
+  margin-top: 0.15rem;
+}
+
+.add-to-cart-link:hover {
+  background: #d6d6d6;
+  color: #111;
+  text-decoration: none;
+}
+
+.quantity-selector {
+  margin-top: 0.4rem;
+  font-size: 0.91rem;
+}
+
+.input-group.input-group-sm {
+  max-width: 110px;
+  margin: 0 auto;
+}
+
+.input-group.input-group-sm .form-control {
+  font-size: 0.93rem;
+  padding: 2px 4px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+
+.input-group.input-group-sm .btn {
+  font-size: 0.93rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #ededed;
+  border: none;
+  color: #222;
+}
+
+.input-group.input-group-sm .btn:hover {
+  background: #d6d6d6;
+}
+
+.btn-confirmar {
+  font-size: 0.98rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #ededed;
+  border: none;
+  color: #222;
+}
+
+.btn-confirmar:hover {
+  background: #bdbdbd;
+}
+
+@media (max-width: 767px) {
+  .product-card {
+    max-width: 100%;
+    min-height: 220px;
+  }
+  .product-card img {
+    height: 120px;
+  }
+  .product-card .card-body {
+    padding: 8px 6px 6px 6px;
+    font-size: 0.95rem;
+  }
 }
 
 /* Estilo para la página de login */
@@ -480,6 +537,8 @@ h2 {
   transition: color 0.3s ease;
 }
 
+
+
 /* Estilo para boton de volver */
 
 .back-btn {
@@ -522,38 +581,678 @@ h2 {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Estilo para detalles del usuario */
+/* Estilo para botones de formulario de vista de usuario */
 
-.usuario-detalle .form-control {
-  background-color: #f9f9f9;
-  border: 1px solid #ced4da;
-  padding: 0.20rem;
-  font-size: 1rem;
+.formulario-usuario-detalle .campo-usuario {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    width: 265px;
+    max-width: 100%;
+    padding: 6px 30px 6px 0;
+    font-size: 1rem;
+    color: #212529;
+    transition: border-color 0.2s ease-in-out;
+}
+
+
+
+.formulario-usuario-detalle .campo-usuario:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.formulario-usuario-detalle .campo-usuario[readonly] {
+    color: #6c757d;
+    border-color: #ddd;
+}
+
+.formulario-usuario-detalle .editar-campo {
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    color: #7c96ad;
+    padding: 0;
+}
+
+.formulario-usuario-detalle .editar-campo:hover {
+    color: #000;
+    cursor: pointer;
+}
+
+.formulario-usuario-detalle .position-relative {
+    position: relative !important;
+}
+
+.formulario-usuario-detalle .editar-campo {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* Responsive para formulario de usuario admin */
+@media (max-width: 576px) {
+    .tarjeta-detalle-usuario {
+        max-width: 100% !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+    .formulario-usuario-detalle .campo-usuario {
+        width: 100%;
+        font-size: 1rem;
+    }
+    .formulario-wrapper {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* Consultas */
+
+/* Estética general */
+.admin-consultas {
+    font-size: 0.95rem;
+}
+
+.titulo-tabla {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo para las tablas */
+.tabla-consultas {
+    font-size: 0.9rem;
+    overflow: hidden;
+}
+
+/* Links de usuario */
+.link-usuario {
+    color: #000;
+    text-decoration: none;
+}
+
+.link-usuario:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* Paginación */
+.paginacion-consultas .pagination {
+    justify-content: center;
+}
+
+.paginacion-consultas a,
+.paginacion-consultas span {
+    color: #000 !important;
+    text-decoration: none;
+}
+
+/* Botones de estado */
+button.btn-success,
+button.btn-secondary {
+    min-width: 100px;
+}
+
+/* --- Ajustes para columnas --- */
+.tabla-consultas th,
+.tabla-consultas td {
+    vertical-align: middle;
+}
+
+.tabla-consultas td:nth-child(2),  /* Email */
+.tabla-consultas th:nth-child(2) {
+    width: 18%;
+}
+
+.tabla-consultas td:nth-child(3),  /* Mensaje */
+.tabla-consultas th:nth-child(3) {
+    width: 50%;
+}
+
+.tabla-consultas td:nth-child(4),  /* Acciones */
+.tabla-consultas th:nth-child(4) {
+    width: 20%;
+    text-align: center;
+}
+
+/* --- Limpieza visual --- */
+.table-light th {
+    background-color: #e7e2e2;
+    font-weight: 600;
+}
+
+.tabla-consultas {
+    background-color: #fff;
+    border: 5px solid #000000;
+    border-color: #797676;
+}
+
+.tabla-consultas .btn-sm {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+}
+
+.link-usuario {
+    color: #333;
+    text-decoration: none;
+}
+.link-usuario:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* --- Botones de estado --- */
+.btn-success,
+.btn-secondary {
+    min-width: 90px;
+}
+
+.paginacion-consultas .pagination {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tabla-consultas {
+    border: 1px solid #ccc;
+}
+
+.tabla-consultas th,
+.tabla-consultas td {
+    border: 1px solid #bbb !important;
+}
+
+.tabla-consultas thead {
+    background-color: #f8f9fa;
+}
+
+.tabla-consultas tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.quantity-selector {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Estilo para la pagina de carrito */
+
+/* Estilo minimalista y monocromático para la tabla del carrito */
+.table-minimalista {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.table-minimalista thead tr {
+  border-bottom: 2px solid #444;
+  background-color: #f4f4f4;
+}
+
+.table-minimalista thead th {
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  color: #222;
+  background-color: #f7f7f7;
+}
+
+.table-minimalista tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s ease;
+}
+
+.table-minimalista tbody tr:hover {
+  background-color: #efefef;
+}
+
+.table-minimalista tbody td {
+  padding: 0.45rem 0.75rem;
+  vertical-align: middle;
+}
+
+.table-minimalista img {
   border-radius: 4px;
+  max-width: 50px;
+  height: auto;
+  vertical-align: middle;
 }
 
-.usuario-detalle .form-control:focus {
-  border-bottom: 2px solid #000;
+/* Botones estilizados minimalistas */
+.btn-minimalista {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  border: 1.5px solid #444;
+  border-radius: 4px;
   background-color: transparent;
-  box-shadow: none;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.usuario-detalle input[readonly] {
-  background-color: #f8f9fa;
-  border-color: #ced4da;
-  cursor: default;
+.btn-minimalista:hover,
+.btn-minimalista:focus {
+  background-color: #444;
+  color: white;
+  text-decoration: none;
+  outline: none;
+  box-shadow: 0 0 6px rgba(68, 68, 68, 0.5);
 }
 
-.usuario-detalle .form-control-sm {
-  padding-right: 30px; /* espacio para el lápiz */
+.btn-minimalista:active {
+  background-color: #222;
+  border-color: #222;
 }
 
-.usuario-detalle button.editar-campo {
-  color: #6c757d;
+/* Alineación del total y espaciado */
+tfoot th {
+  font-weight: 700;
+  font-size: 1rem;
+  padding-top: 1rem;
+  color: #111;
+}
+
+.carrito-container .h1 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.table-minimalista tfoot {
+  border-top: 2px solid #444;
+}
+
+.carrito-container .btn-primary {
+  background-color: #63af8c;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-color: #000;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.carrito-container .btn-primary:hover {
+  background-color: #0e5a36;
+  color: white;
+}
+
+.confirmar-compra-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.confirmar-compra-container form {
+  background-color: #f7f7f7;
+  border: 1.5px solid #444;
+  border-radius: 4px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 4px 12px rgba(68, 68, 68, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.confirmar-compra-container h1 {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.confirmar-compra-container form label {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.confirmar-compra-container form input[type="text"],
+.confirmar-compra-container form select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1.2px solid #888;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #222;
+  background-color: white;
+  transition: border-color 0.3s ease;
+}
+
+.confirmar-compra-container form input[type="text"]:focus,
+.confirmar-compra-container form select:focus {
+  border-color: #63af8c;
+  outline: none;
+  box-shadow: 0 0 5px rgba(99, 175, 140, 0.6);
+}
+
+.confirmar-compra-container .form-check-label {
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+}
+
+.confirmar-compra-container .form-check-input {
+  cursor: pointer;
+  margin-right: 0.5rem;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.confirmar-compra-container form button[type="submit"] {
+  display: block;
+  margin: 2rem auto 0;
+  background-color: #63af8c;
+  color: white;
   border: none;
-  background: none;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 10px rgba(99, 175, 140, 0.5);
 }
 
-.usuario-detalle button.editar-campo:hover {
-  color: #000;
+.confirmar-compra-container form button[type="submit"]:hover {
+  background-color: #0e5a36;
+  box-shadow: 0 4px 14px rgba(14, 90, 54, 0.8);
+}
+
+.confirmar-compra-container .mb-3 {
+  margin-bottom: 1.25rem;
+}
+
+.confirmar-compra-container #bloque-direccion ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.confirmar-compra-container #bloque-direccion ul li {
+  margin-bottom: 0.3rem;
+}
+
+.confirmar-compra-container #bloque-direccion {
+  background-color: #e8e8e8;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 480px) {
+  .confirmar-compra-container form {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .confirmar-compra-container form button[type="submit"] {
+    width: 100%;
+  }
+}
+
+.exito-compra-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.card-exito {
+  border: 1px solid #ccc;
+  padding: 2.5rem;
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  background-color: #fefefe;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: #333;
+}
+
+.card-exito h2 {
+  color: #3c8c61;
+  margin-bottom: 1rem;
+}
+
+.card-exito p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.card-exito .btn-success {
+  background-color: #3c8c61;
+  border-color: #3c8c61;
+  color: #fff;
+}
+
+.card-exito .btn-success:hover {
+  background-color: #2d6f4e;
+  border-color: #2d6f4e;
+}
+
+/* Contenedor principal */
+.custom-container {
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+/* Título principal */
+.custom-perfil-title {
+  font-weight: 700;
+  font-size: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  color: #222;
+}
+
+/* Cards generales */
+.custom-perfil-card,
+.custom-card-direccion,
+.custom-card-historial-compras {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: none;
+  background: #fafafa;
+}
+
+/* Headers de cards */
+.custom-perfil-card-header,
+.custom-card-header-direccion,
+.custom-card-header-historial {
+  background: transparent;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 16px;
+  color: #333;
+}
+
+/* Cuerpo de las cards */
+.custom-perfil-card-body,
+.custom-card-body-direccion,
+.custom-card-body-compras {
+  padding: 16px;
+}
+
+/* Formularios */
+.custom-form-datos-personales,
+.custom-form-direccion {
+  width: 100%;
+}
+
+/* Grupos de inputs */
+.custom-form-group-nombre,
+.custom-form-group-email,
+.custom-form-group-celular,
+.custom-form-group-calle,
+.custom-form-group-altura,
+.custom-form-group-ciudad,
+.custom-form-group-localidad {
+  margin-bottom: 16px;
+}
+
+/* Labels */
+.custom-label-nombre,
+.custom-label-email,
+.custom-label-celular,
+.custom-label-nueva-password,
+.custom-label-confirmar-password,
+.custom-label-calle,
+.custom-label-altura,
+.custom-label-ciudad,
+.custom-label-localidad {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #444;
+}
+
+/* Inputs */
+.custom-input-nombre,
+.custom-input-email,
+.custom-input-celular,
+.custom-input-nueva-password,
+.custom-input-confirmar-password,
+.custom-input-calle,
+.custom-input-altura,
+.custom-input-ciudad,
+.custom-input-localidad {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #222;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.custom-input-nombre:focus,
+.custom-input-email:focus,
+.custom-input-celular:focus,
+.custom-input-nueva-password:focus,
+.custom-input-confirmar-password:focus,
+.custom-input-calle:focus,
+.custom-input-altura:focus,
+.custom-input-ciudad:focus,
+.custom-input-localidad:focus {
+  border-color: #888;
+  outline: none;
+}
+
+/* Botones */
+.custom-btn-cambiar-password,
+.custom-btn-guardar-cambios,
+.custom-btn-editar-direccion,
+.custom-btn-guardar-direccion,
+.custom-btn-toggle-historial,
+.custom-btn-ver-factura,
+.custom-btn-desactivar-cuenta {
+  border-radius: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #aaa;
+  background: transparent;
+  color: #444;
+  padding: 6px 14px;
+  user-select: none;
+}
+
+.custom-btn-cambiar-password:hover,
+.custom-btn-editar-direccion:hover,
+.custom-btn-toggle-historial:hover,
+.custom-btn-ver-factura:hover {
+  background: #eee;
+  border-color: #888;
+  color: #222;
+}
+
+.custom-btn-guardar-cambios,
+.custom-btn-guardar-direccion {
+  background: #222;
+  border-color: #222;
+  color: #fff;
+  padding: 8px 18px;
+}
+
+.custom-btn-guardar-cambios:hover,
+.custom-btn-guardar-direccion:hover {
+  background: #444;
+  border-color: #444;
+}
+
+.custom-btn-desactivar-cuenta {
+  border-color: #cc5555;
+  color: #cc5555;
+  background: transparent;
+  padding: 8px 18px;
+}
+
+.custom-btn-desactivar-cuenta:hover {
+  background: #cc5555;
+  color: #fff;
+}
+
+/* Listas y items */
+.custom-list-group-facturas {
+  padding-left: 0;
+  list-style: none;
+}
+
+.custom-list-item-factura {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 12px 16px;
+  background: #fff;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.custom-list-item-factura:hover {
+  background-color: #f5f5f5;
+}
+
+/* Texto info compra */
+.custom-factura-info {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Texto sin compras */
+.custom-text-no-compras {
+  font-style: italic;
+  color: #888;
+}
+
+/* Íconos SVG */
+.custom-icon-chevron,
+.custom-icon-eye {
+  stroke: #666;
+  transition: stroke 0.3s ease;
+}
+
+.custom-btn-toggle-historial:hover .custom-icon-chevron,
+.custom-btn-ver-factura:hover .custom-icon-eye {
+  stroke: #222;
 }

@@ -24,8 +24,8 @@
             <label class="form-label">Categoría</label>
             <select name="categoria" class="form-control form-control-sm" required>
                 <option value="">Selecciona una categoría</option>
-                <option value="Masculino" <?= old('categoria', $producto->categoria) == 'Masculino' ? 'selected' : '' ?>>Masculino</option>
-                <option value="Femenino" <?= old('categoria', $producto->categoria) == 'Femenino' ? 'selected' : '' ?>>Femenino</option>
+                <option value="Invierno" <?= old('categoria', $producto->categoria) == 'Invierno' ? 'selected' : '' ?>>Invierno</option>
+                <option value="Verano" <?= old('categoria', $producto->categoria) == 'Verano' ? 'selected' : '' ?>>Verano</option>
             </select>
         </div>
         <div class="mb-2">

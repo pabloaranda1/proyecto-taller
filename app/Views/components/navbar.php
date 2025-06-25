@@ -21,10 +21,8 @@
             Catálogo
           </a>
           <ul class="dropdown-menu dropdown-menu-responsive" aria-labelledby="catalogoDropdown">
-            <li><a class="dropdown-item" href="<?= base_url('/catalogo-verano') ?>">Verano</a></li>
-            <li><a class="dropdown-item" href="<?= base_url('/catalogo-invierno') ?>">Invierno</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="<?= base_url('/') ?>#productCarousel">Destacados 🔥</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('/catalogo/verano') ?>">Verano</a></li>
+            <li><a class="dropdown-item" href="<?= base_url('/catalogo/invierno') ?>">Invierno</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -45,10 +43,9 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <!-- Carrito -->
         <li class="nav-item position-relative mt-2 me-2">
-          <a href="javascript:void(0);" class="nav-link" onclick="mostrarTooltip()">
+          <a href="<?= site_url('carrito') ?>" class="nav-link">
             <img src="<?= base_url('assets/images/carrito.png') ?>" alt="Carrito" height="24">
           </a>
-          <div id="tooltipCarrito" class="carrito-tooltip">En construcción</div>
         </li>
         <!-- Perfil -->
         <li class="nav-item dropdown position-relative mt-2 me-2">
@@ -60,7 +57,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
             <?php if (session()->get('id_usuario')): ?>
-              <li><a class="dropdown-item" href="javascript:void(0);">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="<?= base_url('/perfil') ?>">Mi perfil</a></li>
               <li><a class="dropdown-item" href="<?= base_url('/logout') ?>">Cerrar sesión</a></li>
             <?php else: ?>
               <li><a class="dropdown-item" href="<?= base_url('/login') ?>">Iniciar sesión</a></li>

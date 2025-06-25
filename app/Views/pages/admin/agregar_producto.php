@@ -23,8 +23,8 @@
             <label class="form-label">Categoría</label>
             <select name="categoria" class="form-control form-control-sm" required>
                 <option value="">Selecciona una categoría</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
+                <option value="Invierno">Invierno</option>
+                <option value="Verano">Verano</option>
             </select>
         </div>
         <div class="mb-2">

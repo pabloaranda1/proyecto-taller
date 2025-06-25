@@ -9,7 +9,7 @@ class FacturaModel extends Model
     protected $primaryKey = 'id_factura';
 
     protected $allowedFields = ['id_usuario', 'fecha', 'total'];
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
 
     protected $returnType = 'array'; 
 }
